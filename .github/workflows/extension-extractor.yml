@@ -20,7 +20,7 @@ jobs:
         cache: maven
     - name: Build and Run with Maven
       run: mvn clean install exec:java -Dexec.mainClass=de.dan1el789.Main
-    - name: Upload math result for job 1
+    - name: upload result
       uses: actions/upload-artifact@v3
       with:
         name: extensions-list
@@ -30,10 +30,16 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-    - name: Download math result for job 1
+    - name: download result
       uses: actions/download-artifact@v3
       with:
         name: extensions-list
+        
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'pip' 
+        
     - name: download Extensions
       run: |
         sudo apt install unzip -y
@@ -48,7 +54,7 @@ jobs:
           cp "download/$id/manifest.json" "manifests/$id.json"
         done < extensions.csv
         cp extensions.csv manifests/extensions.csv
-        ls -la
+        python merge_jsons.py
         
     - uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/main' }}
