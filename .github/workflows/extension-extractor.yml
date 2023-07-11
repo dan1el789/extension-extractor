@@ -59,8 +59,9 @@ jobs:
           unzip -d "download/$id" "download/$id.zip"
           cp "download/$id/manifest.json" "manifests/$id.json"
         done < extensions.csv
-        cp extensions.csv manifests/extensions.csv
+        mv extensions.csv manifests/extensions.csv
         python merge_jsons.py
+        cat output/manifests.json
         
     - uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/main' }}
