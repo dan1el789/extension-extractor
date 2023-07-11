@@ -39,6 +39,7 @@ jobs:
         sudo apt install unzip -y
         mkdir manifests
         mkdir download
+        mkdir output
         while IFS="," read -r id name url
         do
           echo "Record is : $id $url"
@@ -53,5 +54,5 @@ jobs:
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./manifests
+        publish_dir: ./output
     
