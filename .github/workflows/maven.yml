@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -23,11 +22,12 @@ jobs:
       run: mvn clean install exec:java -Dexec.mainClass=de.dan1el789.Main
 
   downloadExtensions:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - name: download Extensions
       run: |
-        apt install zip -y
+        sudo apt install unzip -y
         mkdir manifests
         while IFS="," read -r id name url
         do
