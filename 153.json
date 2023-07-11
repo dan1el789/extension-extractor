@@ -1,0 +1,182 @@
+{
+  "name": "\u5212\u8bcd\u7ffb\u8bd1",
+  "description": "\u4e00\u7ad9\u5f0f\u5212\u8bcd / \u622a\u56fe / \u7f51\u9875\u5168\u6587 / \u97f3\u89c6\u9891\u7ffb\u8bd1\u6269\u5c55\uff0c\u652f\u6301\u8c37\u6b4c\u3001DeepL\u3001ChatGPT\u3001\u767e\u5ea6\u7b49 9 \u4e2a\u56fd\u5185\u5916\u4e3b\u6d41\u7ffb\u8bd1\u670d\u52a1\uff0c\u5747\u53ef\u7528\u4e8e\u5168\u6587\u7ffb\u8bd1\u3002\u80fd\u5728 PDF \u91cc\u4f7f\u7528\u3002",
+  "homepage_url": "https://hcfy.app",
+  "manifest_version": 2,
+  "version": "10.1.0",
+  "content_security_policy": "script-src 'self' 'wasm-eval'; object-src 'self'",
+  "icons": {
+    "16": "logodark.png",
+    "48": "logodark.png",
+    "128": "logodark.png"
+  },
+  "permissions": [
+    "<all_urls>",
+    "contextMenus",
+    "storage",
+    "clipboardWrite",
+    "clipboardRead",
+    "webRequest",
+    "webRequestBlocking",
+    "alarms"
+  ],
+  "optional_permissions": [
+    "notifications",
+    "background"
+  ],
+  "background": {
+    "scripts": [
+      "190.js",
+      "251.js",
+      "805.js",
+      "702.js",
+      "896.js",
+      "426.js",
+      "204.js",
+      "885.js",
+      "b.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "190.js",
+        "251.js",
+        "217.js",
+        "644.js",
+        "805.js",
+        "664.js",
+        "758.js",
+        "140.js",
+        "426.js",
+        "523.js",
+        "986.js",
+        "885.js",
+        "704.js",
+        "68.js",
+        "214.js",
+        "c.js"
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "190.js",
+        "251.js",
+        "805.js",
+        "780.js",
+        "426.js",
+        "523.js",
+        "204.js",
+        "68.js",
+        "ca.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_end"
+    }
+  ],
+  "options_ui": {
+    "page": "settings.html",
+    "open_in_tab": true
+  },
+  "browser_action": {
+    "default_icon": "logodark.png",
+    "default_popup": "popup.html"
+  },
+  "omnibox": {
+    "keyword": "hcfy"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Q",
+        "mac": "MacCtrl+Q"
+      }
+    },
+    "translate": {
+      "suggested_key": {
+        "default": "Alt+A"
+      },
+      "description": "\u7ffb\u8bd1\u9009\u4e2d\u7684\u6587\u672c"
+    },
+    "hoverTranslate": {
+      "description": "\u9f20\u6807\u60ac\u6d6e\u53d6\u8bcd"
+    },
+    "translateWithPopup": {
+      "suggested_key": {
+        "default": "Alt+S"
+      },
+      "description": "\u4f7f\u7528\u72ec\u7acb\u7a97\u53e3\u7ffb\u8bd1\u9009\u4e2d\u7684\u6587\u672c"
+    },
+    "panel": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1"
+      },
+      "description": "\u6253\u5f00\u72ec\u7acb\u7ffb\u8bd1\u7a97\u53e3",
+      "global": true
+    },
+    "screenshot": {
+      "description": "\u622a\u56fe\u7ffb\u8bd1"
+    },
+    "page": {
+      "description": "\u7f51\u9875\u5168\u6587\u7ffb\u8bd1"
+    },
+    "pageSwitchMode": {
+      "description": "\u5207\u6362\u53cc\u8bed / \u539f\u6587 / \u8bd1\u6587"
+    },
+    "switchWeb": {
+      "description": "\u5207\u6362\u7f51\u9875\u5212\u8bcd\u5f00\u5173"
+    },
+    "play": {
+      "description": "\u6717\u8bfb\u6587\u672c"
+    }
+  },
+  "web_accessible_resources": [
+    "normalize.css",
+    "cropper.css",
+    "blueprint.css",
+    "blueprint-select.css",
+    "youdao.ico",
+    "hs.png",
+    "baidu.ico",
+    "google.ico",
+    "deepl.png",
+    "alilogo.png",
+    "bing.ico",
+    "qq.ico",
+    "sogou.ico",
+    "xiaoyilogo.png",
+    "chatgpt.jpg",
+    "yandex.png",
+    "logo.png",
+    "logodark.png",
+    "logowhite36.png",
+    "pdf-viewer/*",
+    "panel.html",
+    "190.js",
+    "251.js",
+    "217.js",
+    "644.js",
+    "426.js",
+    "523.js",
+    "986.js",
+    "204.js",
+    "885.js",
+    "704.js",
+    "272.js",
+    "pn.css",
+    "pn.js"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{0982b844-4f35-48b7-9811-6832d916f21c}"
+    }
+  }
+}

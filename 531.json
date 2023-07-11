@@ -1,0 +1,50 @@
+{
+  "name": "购物党实时比价工具(浏览器57以上版本安装)",
+  "manifest_version": 2,
+  "version": "2.3.12",
+  "description": "浏览商品页面时，自动比较同款商品在淘宝/京东/亚马逊/当当/新蛋/易迅/一号店等百家商城的最低价格，提供180天价格历史查询，消费者口碑评分等。支持查询商品参加的促销活动，商城的优惠信息，商品更可全网收藏，降价提醒。同时支持链家、我爱我家、中原地产等主流房产网站房源价格走势查询，为买房人士提供决策参考。",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "96": "images/icon128.png"
+  },
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "cookies",
+    "storage",
+    "webRequest",
+    "webRequestBlocking"
+  ],
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+  "options_page": "html/setting.html",
+  "browser_action": {
+    "default_icon": {
+      "19": "images/icon19.png"
+    },
+    "default_title": "购物党全网自动比价工具"
+  },
+  "commands": {
+    "toggle-feature": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "linux": "Ctrl+Shift+U"
+      },
+      "description": "Send a 'toggle-feature' event"
+    }
+  },
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+  "content_scripts": [{
+    "matches": ["http://*/*", "https://*/*"],
+    "js": ["js/main.js"],
+    "all_frames": false
+  }],
+  "web_accessible_resources": [
+    "js/gwdang-notifier-ff.js",
+    "css/*",
+    "images/*"
+  ]
+
+}

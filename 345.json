@@ -1,0 +1,24 @@
+﻿{
+  "manifest_version": 2,
+  "name": "有道网页翻译",
+  "version": "3.1",
+  "author": "Sirius_Sang",
+  "description": "使用有道翻译正在浏览的网页",
+  "icons": {
+    "48": "icons/48.png",
+	"96":"icons/96.png"
+  },
+  "permissions": ["<all_urls>", "storage", "contextMenus","activeTab"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  
+  "browser_action": {
+    "default_title": "Translator",
+    "default_icon": {
+			"32": "icons/32.png",
+			"48": "icons/48.png"
+		}
+	
+  }
+}

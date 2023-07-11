@@ -1,0 +1,75 @@
+{
+  "name": "The Stream Detector",
+  "version": "2.11.5",
+  "description": "__MSG_extText__",
+  "manifest_version": 2,
+  "default_locale": "en",
+  "permissions": [
+    "<all_urls>",
+    "clipboardWrite",
+    "downloads",
+    "notifications",
+    "storage",
+    "tabs",
+    "webRequest"
+  ],
+  "background": {
+    "page": "background.0cbae07b.html"
+  },
+  "icons": {
+    "16": "icon-dark-16.d158b7cb.png",
+    "48": "icon-dark-48.3050a510.png",
+    "96": "icon-dark-96.4236c605.png"
+  },
+  "commands": {
+    "open-popup": {
+      "description": "__MSG_openPopup__"
+    },
+    "open-sidebar": {
+      "description": "__MSG_openSidebar__"
+    }
+  },
+  "options_ui": {
+    "open_in_tab": true,
+    "page": "options.28226748.html"
+  },
+  "browser_action": {
+    "default_title": "The Stream Detector",
+    "default_popup": "popup.766db22c.html",
+    "default_icon": {
+      "16": "icon-dark-16.d158b7cb.png",
+      "48": "icon-dark-48.3050a510.png"
+    },
+    "theme_icons": [
+      {
+        "dark": "icon-dark-96.4236c605.png",
+        "light": "icon-light-96.157f7b85.png",
+        "size": 96
+      },
+      {
+        "dark": "icon-dark-48.3050a510.png",
+        "light": "icon-light-48.40e4ad95.png",
+        "size": 48
+      },
+      {
+        "dark": "icon-dark-16.d158b7cb.png",
+        "light": "icon-light-16.738042ec.png",
+        "size": 16
+      }
+    ]
+  },
+  "sidebar_action": {
+    "default_title": "The Stream Detector",
+    "default_panel": "sidebar.35ec119e.html",
+    "default_icon": {
+      "16": "icon-dark-16.d158b7cb.png",
+      "48": "icon-dark-48.3050a510.png"
+    },
+    "open_at_install": false
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@m3u8link"
+    }
+  }
+}

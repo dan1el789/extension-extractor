@@ -1,0 +1,59 @@
+{
+  "background": {
+    "scripts": [
+      "distJs/constants.js",
+      "distJs/helper.js",
+      "html/js/storageReplacer.js",
+      "util.js",
+      "background.js",
+      "misc.js"
+    ]
+  },
+  "name": "Unit Conversion Tab & Custom Web Search",
+  "short_name": "Unit Conversion Tab",
+  "icons": {
+    "128": "icons/Unit_Conversion_Tab_Colored.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://unitconversiontab.com/*"
+      ],
+      "run_at": "document_start",
+      "all_frames": false,
+      "js": [
+        "contentScript.js"
+      ]
+    }
+  ],
+  "description": "Add the Unit Conversion Tab & Custom Web Search extension and click the icon on the toolbar to access a unit converter tool and Yahoo\u00ae search.",
+  "version": "1.0.0.7",
+  "manifest_version": 2,
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": {
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Unit Conversion Tab & Custom Web Search"
+  },
+  "permissions": [
+    "*://unitconversiontab.com/",
+    "tabs",
+    "storage"
+  ],
+  "chrome_settings_overrides": {
+    "search_provider": {
+      "name": "web search by Yahoo",
+      "keyword": "Unit Conversion Tab",
+      "favicon_url": "icons/icon128.png",
+      "search_url": "https://search.yahoo.com/yhs/search?hspart=mnet&hsimp=yhs-001&type=type9031417-spa-37902-84514&param1=37902&param2=84514&p={searchTerms}&grd=1",
+      "suggest_url": "https://search.yahoo.com/sugg/ie?output=fxjson&command={searchTerms}&nResults=10",
+      "is_default": true
+    }
+  },
+  "applications": {
+    "gecko": {
+      "id": "Unit_Conversion_Tab___Custom_Web_Search_TyNxLzyLbg@unitconversiontab.com"
+    }
+  }
+}

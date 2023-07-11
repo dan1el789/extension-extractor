@@ -1,0 +1,71 @@
+{
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "browser_action": {
+    "default_icon": {
+      "128": "assets/icons/icon128.png",
+      "256": "assets/icons/icon256.png",
+      "32": "assets/icons/icon32.png",
+      "48": "assets/icons/icon48.png",
+      "96": "assets/icons/icon96.png"
+    },
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "js": [
+        "libs/cursor.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    },
+    {
+      "all_frames": true,
+      "js": [
+        "libs/jquery-3.3.1.min.js",
+        "libs/jquery.growl.js",
+        "libs/cc.js"
+      ],
+      "run_at": "document_idle",
+      "matches": [
+        "*://*.custom-cursor.com/*"
+      ]
+    }
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "default_locale": "en",
+  "description": "__MSG_app_description__",
+  "icons": {
+    "128": "assets/icons/icon128.png",
+    "256": "assets/icons/icon256.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "96": "assets/icons/icon96.png"
+  },
+  "manifest_version": 2,
+  "name": "__MSG_app_name__",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "permissions": [
+    "tabs",
+    "*://*/*",
+    "storage"
+  ],
+  "version": "3.1.2",
+  "web_accessible_resources": [
+    "assets/*.*",
+    "libs/*.*"
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{bca0b146-ab27-44f2-947f-87a41e360e88}"
+    }
+  }
+}

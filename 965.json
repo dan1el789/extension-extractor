@@ -1,0 +1,33 @@
+{
+	"name": "AdF.ly Skipper ★WORKING: 9/13/2017★",
+	"version": "8.1.0",
+	"description": "Skip AdF.ly and bypass the wait!",
+	"icons": {
+		"48": "/img/icon-48.png"
+	},
+    "content_scripts": [
+		{
+			"js": [
+				"/js/script.js"
+			],
+			"matches": [
+				"*://*/*"
+			],
+			"run_at": "document_start"
+		}
+    ],
+	"browser_action": {
+		"browser_style": true,
+		"default_icon": {
+			"48": "/img/icon-button.png"
+		},
+		"default_title": "AdF.ly Skipper",
+		"default_popup": "/html/popup.html"
+	},
+	"applications": {
+		"gecko": {
+			"id": "jid0-hyjN250ZzTOOX3evFwwAQBxE4ik@jetpack"
+		}
+	},
+	"manifest_version": 2
+}
