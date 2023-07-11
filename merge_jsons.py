@@ -9,7 +9,6 @@ with open('manifests/extensions.csv', 'r') as extensions_csv:
             manifest = json.load(json_manifest)
             obj = {"id": row[0], "name": row[1], "manifest" : manifest}
             data.append(obj)
-    print(data)
 
 out_file = open("output/manifests.json", "w")
 json.dump(data, out_file)
