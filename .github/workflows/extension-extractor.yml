@@ -56,7 +56,7 @@ jobs:
         do
           echo "Record is : $id $url"
           curl $url -o "download/$id.zip"
-          unzip -d "download/$id" "download/$id.zip"
+          unzip -q -d "download/$id" "download/$id.zip"
           cp "download/$id/manifest.json" "manifests/$id.json"
         done < extensions.csv
         mv extensions.csv manifests/extensions.csv
