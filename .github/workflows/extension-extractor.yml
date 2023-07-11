@@ -20,11 +20,20 @@ jobs:
         cache: maven
     - name: Build and Run with Maven
       run: mvn clean install exec:java -Dexec.mainClass=de.dan1el789.Main
+    - name: Upload math result for job 1
+      uses: actions/upload-artifact@v3
+      with:
+        name: extensions-list
+        path: extensions.csv
 
   downloadExtensions:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+    - name: Download math result for job 1
+      uses: actions/download-artifact@v3
+      with:
+        name: extensions-list
     - name: download Extensions
       run: |
         sudo apt install unzip -y
