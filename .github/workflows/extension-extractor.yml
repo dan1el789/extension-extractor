@@ -38,6 +38,7 @@ jobs:
       run: |
         sudo apt install unzip -y
         mkdir manifests
+        mkdir download
         while IFS="," read -r id name url
         do
           echo "Record is : $id $url"
