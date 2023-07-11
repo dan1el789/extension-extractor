@@ -12,33 +12,46 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+        
     - name: Build and Run with Maven
       run: mvn clean install exec:java -Dexec.mainClass=de.dan1el789.Main
-    - name: Upload math result for job 1
+      
+    - name: upload result
       uses: actions/upload-artifact@v3
       with:
         name: extensions-list
         path: extensions.csv
 
+
+
   downloadExtensions:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-    - name: Download math result for job 1
+    - uses: actions/checkout@v3
+
+    - name: download artifact
       uses: actions/download-artifact@v3
       with:
         name: extensions-list
+        
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
     - name: download Extensions
       run: |
         sudo apt install unzip -y
         mkdir manifests
         mkdir download
+        mkdir output
         while IFS="," read -r id name url
         do
           echo "Record is : $id $url"
@@ -46,12 +59,19 @@ jobs:
           unzip -d "download/$id" "download/$id.zip"
           cp "download/$id/manifest.json" "manifests/$id.json"
         done < extensions.csv
-        cp extensions.csv manifests/extensions.csv
-        ls -la
+        mv extensions.csv manifests/extensions.csv
+        python merge_jsons.py
+        cat output/manifests.json
+        ls -la output
+    - name: upload result
+      uses: actions/upload-artifact@v3
+      with:
+        name: extensions-manifest-collection
+        path: output/manifests.json
         
     - uses: peaceiris/actions-gh-pages@v3
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./manifests
+        publish_dir: ./output
     
