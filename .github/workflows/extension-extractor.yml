@@ -2,7 +2,7 @@ name: extract extensions manifests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "merge-jsons" ]
   schedule: 
     - cron: "0 1 * * *"
 
