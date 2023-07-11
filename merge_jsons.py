@@ -9,10 +9,10 @@ with open('manifests/extensions.csv', 'r') as extensions_csv:
         try:
             with open('manifests/' + row[0] + '.json', 'r') as json_manifest:
                 manifest = json.load(json_manifest)
-                obj = {"id": row[0], "name": row[1], "manifest" : manifest, "error" : "no"}
+                obj = {"id": row[0], "name": row[1], "manifest" : manifest, "error" : False}
                 data.append(obj)
         except:
-            obj = {"id": row[0], "name": row[1], "error" : "yes"}
+            obj = {"id": row[0], "name": row[1], "error" : True}
             data.append(obj)
 
 out_file = open("output/manifests.json", "w")
