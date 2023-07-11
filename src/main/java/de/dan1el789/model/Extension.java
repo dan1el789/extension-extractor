@@ -1,4 +1,4 @@
-package org.example.model;
+package de.dan1el789.model;
 
 public class Extension {
 

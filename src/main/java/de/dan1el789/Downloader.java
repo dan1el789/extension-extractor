@@ -1,6 +1,6 @@
-package org.example;
+package de.dan1el789;
 
-import org.example.model.Extension;
+import de.dan1el789.model.Extension;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
