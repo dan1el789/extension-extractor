@@ -62,6 +62,7 @@ jobs:
         mv extensions.csv manifests/extensions.csv
         python merge_jsons.py
         cat output/manifests.json
+        cp website/* output
         ls -la output
     - name: upload result
       uses: actions/upload-artifact@v3
