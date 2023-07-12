@@ -2,7 +2,7 @@ name: extract extensions manifests
 
 on:
   push:
-    branches: [ "main", "add-filter"]
+    branches: [ "main" ]
   schedule: 
     - cron: "0 1 * * *"
 
@@ -79,7 +79,7 @@ jobs:
         path: output/manifests.json
         
     - uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/add-filter' }}
+      if: ${{ github.ref == 'refs/heads/main' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./output
