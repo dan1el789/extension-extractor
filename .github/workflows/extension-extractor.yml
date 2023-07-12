@@ -49,9 +49,11 @@ jobs:
     - name: download Extensions
       run: |
         sudo apt install unzip -y
+        
         mkdir manifests
         mkdir download
         mkdir output
+        
         while IFS="," read -r id name url
         do
           echo "Record is : $id $url"
@@ -59,11 +61,15 @@ jobs:
           unzip -q -d "download/$id" "download/$id.zip"
           cp "download/$id/manifest.json" "manifests/$id.json"
         done < extensions.csv
+        
         mv extensions.csv manifests/extensions.csv
         python merge_jsons.py
+        
         cat output/manifests.json
         cp website/* output
-        ls -la output
+        echo "const manifest = " >> output/manifests.js
+        cat output/manifests.json >> output/manifests.js
+        
     - name: upload result
       uses: actions/upload-artifact@v3
       with:
