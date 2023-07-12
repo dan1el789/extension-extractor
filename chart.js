@@ -1,11 +1,11 @@
 
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
-    createStatisticsForData(manifestsWithPermissions,10);
-    createStatisticsForData(manifestsWithPermissions.filter(function(item){return item.manifest.permissions.includes("storage")}),10);
+    createStatisticsForData(manifestsWithPermissions,10,"mostUsedPermissions");
+    createStatisticsForData(manifestsWithPermissions.filter(function(item){return item.manifest.permissions.includes("storage")}),10,"mostUsedPermissionsWithStorage");
 });
 
-function createStatisticsForData(dataset, limit){
+function createStatisticsForData(dataset, limit, canvasId){
     let result = {};
     for(key in dataset){
         for(item in dataset[key].manifest.permissions){
@@ -26,7 +26,7 @@ function createStatisticsForData(dataset, limit){
             data.push(result[key])
         }
     }
-    createBarChart(labels, data,"mostUsedPermissions", "Number of Extensions using that permission")
+    createBarChart(labels, data,canvasId, "Number of Extensions using that permission")
 }
 
 function createBarChart(labels, data, canvasId, title){
