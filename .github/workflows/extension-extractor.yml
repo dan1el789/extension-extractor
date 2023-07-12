@@ -67,8 +67,10 @@ jobs:
         
         cat output/manifests.json
         cp website/* output
-        echo "const manifest = " >> output/manifests.js
+        
+        echo "const manifests = " >> output/manifests.js
         cat output/manifests.json >> output/manifests.js
+        echo "let manifestsWithPermissions = manifests.filter(function(item){return !item.error}).filter(function(item){return item.manifest.permissions != undefined})" >> output/manifests.js
         
     - name: upload result
       uses: actions/upload-artifact@v3
