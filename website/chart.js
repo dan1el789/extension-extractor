@@ -7,14 +7,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 function createStatisticsForData(dataset, limit, canvasId){
     let result = {};
+    
+    if(canvasId == "mostUsedPermissionsWithStorage")
+        result = {"storage": -12345678};
+
     for(key in dataset){
         for(item in dataset[key].manifest.permissions){
             if(result[dataset[key].manifest.permissions[item]] != undefined){
                 result[dataset[key].manifest.permissions[item]]++
             }
             else{
-                if(canvasId == "mostUsedPermissionsWithStorage" && dataset[key].manifest.permissions[item] == "storage")
-                    result[dataset[key].manifest.permissions[item]] = -12345678;
                 result[dataset[key].manifest.permissions[item]] = 1
             }
         }
@@ -69,7 +71,7 @@ function createStatisticsForData(dataset, limit, canvasId){
     
     function containsUrlPattern(permissions){
     	for(item in permissions){
-    		if(permissions[item].includes("://")){
+    		if(permissions[item].includes("://") || permissions[item].includes("all_urls")){
     			return true;
     		}
     	}
@@ -83,10 +85,8 @@ function createStatisticsForData(dataset, limit, canvasId){
     let labels = [];
     let data = [];
     for(key in result){
-        if(result[key] >= limit){
-            labels.push(key);
-            data.push(result[key])
-        }
+        labels.push(key);
+        data.push(result[key])
     }
     createBarChart(labels, data, "mostUsedGroups", "Number of Extensions using group of permission")
 })()
