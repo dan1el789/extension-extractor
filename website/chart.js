@@ -1,46 +1,36 @@
 
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
-    loadData();
+    createStatisticsForData(manifestsWithPermissions,10,"mostUsedPermissions");
+    createStatisticsForData(manifestsWithPermissions.filter(function(item){return item.manifest.permissions.includes("storage")}),10,"mostUsedPermissionsWithStorage");
 });
 
-async function loadData(){
-    let request = await fetch("https://dan1el789.github.io/extension-extractor/manifests.json");
-    let response = await request.json();
-
+function createStatisticsForData(dataset, limit, canvasId){
     let result = {};
-    
-    for(key in response){
-        if(!response[key].error){
-            if(response[key].manifest.permissions != undefined){
-                for(item in response[key].manifest.permissions){
-                    if(result[response[key].manifest.permissions[item]] != undefined){
-                        result[response[key].manifest.permissions[item]]++
-                    }
-                    else{
-                        result[response[key].manifest.permissions[item]] = 1
-                    }
-                }
+    for(key in dataset){
+        for(item in dataset[key].manifest.permissions){
+            if(result[dataset[key].manifest.permissions[item]] != undefined){
+                result[dataset[key].manifest.permissions[item]]++
             }
-        } 
+            else{
+                result[dataset[key].manifest.permissions[item]] = 1
+            }
+        }
     }
 
-    console.log(result)
-    labels = [];
-    data = [];
+    let labels = [];
+    let data = [];
     for(key in result){
-        if(result[key] >= 10){
+        if(result[key] >= limit){
             labels.push(key);
             data.push(result[key])
         }
     }
-    console.log(labels)
-    console.log(data)
-    createBarChart(labels, data, "Amount of Extensions using that Permission")
+    createBarChart(labels, data,canvasId, "Number of Extensions using that permission")
 }
 
-function createBarChart(labels, data, title){
-    const ctx = document.getElementById('myChart');
+function createBarChart(labels, data, canvasId, title){
+    const ctx = document.getElementById(canvasId);
     new Chart(ctx, {
         type: 'bar',
         data: {
