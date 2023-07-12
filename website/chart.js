@@ -13,6 +13,8 @@ function createStatisticsForData(dataset, limit, canvasId){
                 result[dataset[key].manifest.permissions[item]]++
             }
             else{
+                if(canvasId == "mostUsedPermissionsWithStorage" && dataset[key].manifest.permissions[item] == "storage")
+                    result[dataset[key].manifest.permissions[item]] = -12345678;
                 result[dataset[key].manifest.permissions[item]] = 1
             }
         }
