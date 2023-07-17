@@ -27,7 +27,8 @@ public class Downloader {
                 Document doc = Jsoup.connect(baseURL + pageNumber).get();
                 doc.getElementsByClass("SearchResult-link").forEach(link -> {
                     extensionList.add(new Extension(link.text(),
-                            getExtensionDownloadURL(link.attr("abs:href"))));
+                            getExtensionDownloadURL(link.attr("abs:href"))),
+                            getExtensionDownloadCount(link.attr("abs:href")));
                 });
             }
         } catch (Exception e){
