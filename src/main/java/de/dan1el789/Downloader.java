@@ -26,9 +26,10 @@ public class Downloader {
             for(int pageNumber = 1; pageNumber <= amountOfPages; pageNumber++){
                 Document doc = Jsoup.connect(baseURL + pageNumber).get();
                 doc.getElementsByClass("SearchResult-link").forEach(link -> {
+                    getExtensionDownloadCount(link.attr("abs:href"));
                     extensionList.add(new Extension(link.text(),
-                            getExtensionDownloadURL(link.attr("abs:href"))),
-                            getExtensionDownloadCount(link.attr("abs:href")));
+                            getExtensionDownloadURL(link.attr("abs:href")),
+                            getExtensionDownloadCount(link.attr("abs:href"))));
                 });
             }
         } catch (Exception e){
@@ -52,10 +53,9 @@ public class Downloader {
     private int getExtensionDownloadCount(String addOnURL){
         try {
             Document doc = Jsoup.connect(addOnURL).get();
-            System.out.println(doc.getElementsByClass("MetadataCard-content")
-                    .get(0).text().replaceAll(".", ""));
-            return Integer.parseInt(doc.getElementsByClass("MetadataCard-content")
-                    .get(0).text().replaceAll(".", ""));
+            String downloadCountAsString = doc.
+                    getElementsByClass("MetadataCard-content").get(0).ownText();
+            return Integer.parseInt(downloadCountAsString.replaceAll("\\.", ""));
         } catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException();
@@ -64,7 +64,6 @@ public class Downloader {
 
     public void saveToFile(String fileName){
         try {
-            String str = "Hello";
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             for(Extension extension : extensionList){
                 writer.write(extension.toString()+"\n");
