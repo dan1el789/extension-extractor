@@ -10,6 +10,14 @@ public class Extension {
         this.downloadURL = downloadURL;
         System.out.println(this);
     }
+    
+    public Extension(String name, String downloadURL, int downloadCount){
+        this.id = idCounter++;
+        this.name = name;
+        this.downloadURL = downloadURL;
+        this.downloadCount = downloadCount;
+        System.out.println(this);
+    }
 
     public int getId() {
         return id;
@@ -23,6 +31,11 @@ public class Extension {
 
     private String name;
     private String downloadURL;
+    private int downloadCount;
+
+    public int getDownloadCout(){
+        return downloadCount;
+    }
 
     public String getDownloadURL() {
         return downloadURL;
@@ -31,6 +44,6 @@ public class Extension {
     @Override
     public String toString() {
         return id + "," + name.replaceAll(",", "")
-                + "," + downloadURL.replaceAll(",", "");
+                + "," + downloadURL.replaceAll(",", "") + "," + downloadCount;
     }
 }

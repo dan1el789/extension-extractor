@@ -54,7 +54,7 @@ jobs:
         mkdir download
         mkdir output
         
-        while IFS="," read -r id name url
+        while IFS="," read -r id name url downloadCount
         do
           echo "Record is : $id $url"
           curl $url -s -o "download/$id.zip"
