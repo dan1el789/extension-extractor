@@ -29,7 +29,10 @@ public class Downloader {
                     getExtensionDownloadCount(link.attr("abs:href"));
                     extensionList.add(new Extension(link.text(),
                             getExtensionDownloadURL(link.attr("abs:href")),
-                            getExtensionDownloadCount(link.attr("abs:href"))));
+                            getExtensionDownloadCount(link.attr("abs:href")),
+                            isRecommended(link.attr("abs:href")),
+                            lastUpdated(link.attr("abs:href"))
+                            ));
                 });
             }
         } catch (Exception e){
@@ -56,6 +59,28 @@ public class Downloader {
             String downloadCountAsString = doc.
                     getElementsByClass("MetadataCard-content").get(0).ownText();
             return Integer.parseInt(downloadCountAsString.replaceAll("\\.", ""));
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    private String lastUpdated(String addOnURL){
+        try {
+            Document doc = Jsoup.connect(addOnURL).get();
+            return doc.getElementsByClass("AddonMoreInfo-last-updated")
+                    .get(0).ownText();
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+        //
+    }
+
+    private boolean isRecommended(String addOnURL){
+        try {
+            Document doc = Jsoup.connect(addOnURL).get();
+            return doc.getElementsByClass("Addon-header").get(0).getElementsByClass("IconPromotedBadge-iconPath--recommended").size() > 0;
         } catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException();
