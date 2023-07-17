@@ -53,7 +53,7 @@ public class Downloader {
         try {
             Document doc = Jsoup.connect(addOnURL).get();
             System.out.println(doc.getElementsByClass("MetadataCard-content")
-                    .get(0).text().replaceAll(".", ""))
+                    .get(0).text().replaceAll(".", ""));
             return Integer.parseInt(doc.getElementsByClass("MetadataCard-content")
                     .get(0).text().replaceAll(".", ""));
         } catch (Exception e){
