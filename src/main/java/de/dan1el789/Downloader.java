@@ -48,6 +48,17 @@ public class Downloader {
         }
     }
 
+    private int getExtensionDownloadCount(String addOnURL){
+        try {
+            Document doc = Jsoup.connect(addOnURL).get();
+            return Integer.parseInt(doc.getElementsByClass("MetadataCard-content")
+                    .get(0).text().replaceAll(".", ""));
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
     public void saveToFile(String fileName){
         try {
             String str = "Hello";
