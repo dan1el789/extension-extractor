@@ -20,3 +20,9 @@ function createDateList(){
     dates.sort((a,b) => a.valueOf() < b.valueOf())
     return dates;
 }
+
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
