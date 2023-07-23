@@ -129,7 +129,7 @@ function createUpdateStatisticForLastHalfYear(){
 		data.push(createDateList().filter(date => (date > (new Date()).addDays(-14 * i) && date <= (new Date()).addDays(-14 * (i-1)))).length )		
 		labels.push((i-1)*2 + " to " + i*2 + " weeks ago")
 	}
-	createBarChart(labels, data, "Updates in the last half year")
+	createBarChart(labels, data, "Last update made, timeframe: last half year")
 }
 
 function createUpdateStatisticsForLast10Years(){
@@ -140,7 +140,5 @@ function createUpdateStatisticsForLast10Years(){
 		data.push(createDateList().filter(date => (date > (new Date()).addDays(-365 * i) && date <= (new Date()).addDays(-365 * (i-1)))).length )		
 		labels.push((i-1) + " to " + i + " year ago")
 	}
-	console.log(labels)
-	console.log(data)
 	createBarChart(labels, data, "last Update made")
 }
