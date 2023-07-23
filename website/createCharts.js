@@ -1,12 +1,17 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("start drawing statistics")
     createStatisticsForOccurencesOfPermissionInExtensions();
-    createSpacing()
+    createSpacing();
     createStatisticsForUsersAllowingPermission();
-    createSpacing(500)
+    createSpacing(500);
     createStatisticsForOccurencesOfPermissionGroupInExtensions();
-    createSpacing()
+    createSpacing();
     createStatisticsForUsersAllowingPermissionGroup();   
+    createSpacing(500);
+    createUpdateStatisticForLastHalfYear();
+    createSpacing();
+    createUpdateStatisticsForLast10Years();
+    
 });
 
 function createStatisticsForOccurencesOfPermissionInExtensions(){
@@ -114,4 +119,26 @@ function createStatisticsForUsersAllowingPermissionGroup(){
         data.push(result[key])
     }
     createBarChart(labels, data, "User Installations with Permission Group granted")
+}
+
+function createUpdateStatisticForLastHalfYear(){
+	let data = []
+	let labels = []
+	
+	for(let i = 1; i < 13; i++){
+		data.push(createDateList().filter(date => (date > (new Date()).addDays(-14 * i) && date <= (new Date()).addDays(-14 * (i-1)))).length )		
+		labels.push((i-1)*2 + " to " + i*2 + " weeks ago")
+	}
+	createBarChart(labels, data, "Last update made, timeframe: last half year")
+}
+
+function createUpdateStatisticsForLast10Years(){
+    let data = []
+	let labels = []
+	
+	for(let i = 1; i < 10; i++){
+		data.push(createDateList().filter(date => (date > (new Date()).addDays(-365 * i) && date <= (new Date()).addDays(-365 * (i-1)))).length )		
+		labels.push((i-1) + " to " + i + " year ago")
+	}
+	createBarChart(labels, data, "last Update made")
 }
