@@ -125,7 +125,7 @@ function createUpdateStatisticForLastHalfYear(){
 	let data = []
 	let labels = []
 	
-	for(let i = 1; i < 13; i++){
+	for(let i = 1; i < 14; i++){
 		data.push(createDateList().filter(date => (date > (new Date()).addDays(-14 * i) && date <= (new Date()).addDays(-14 * (i-1)))).length )		
 		labels.push((i-1)*2 + " to " + i*2 + " weeks ago")
 	}
