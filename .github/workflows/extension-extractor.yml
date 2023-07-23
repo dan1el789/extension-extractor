@@ -1,8 +1,9 @@
 name: extract extensions manifests
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "stats-on-dates" ]
   schedule: 
     - cron: "0 1 * * *"
 
@@ -79,7 +80,7 @@ jobs:
         path: output/manifests.json
         
     - uses: peaceiris/actions-gh-pages@v3
-      if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/stats-on-dates' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./output
