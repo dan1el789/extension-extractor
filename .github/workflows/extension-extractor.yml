@@ -49,7 +49,7 @@ jobs:
         
     - name: download Extensions
       run: |
-        sudo apt install unzip -y
+        sudo apt install zip unzip -y
         
         mkdir manifests
         mkdir download
@@ -72,6 +72,14 @@ jobs:
         echo "const manifests = " >> output/manifests.js
         cat output/manifests.json >> output/manifests.js
         echo ";const manifestsWithPermissions = manifests.filter(function(item){return !item.error}).filter(function(item){return item.manifest.permissions != undefined})" >> output/manifests.js
+    
+    - name: create manifest collection
+      run: |
+        mkdir archive
+        curl https://dan1el789.github.io/extension-extractor/manifest-history.zip -s -o "manifest-history.zip"
+        unzip -q -d archive "manifest-history.zip"
+        cp output/manifests.json "archive/$(date +%Y)_week_$(date +%U)_manifests.json"
+        zip output/manifest-history.zip -r archive
         
     - name: upload result
       uses: actions/upload-artifact@v3
