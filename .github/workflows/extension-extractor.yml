@@ -3,7 +3,7 @@ name: extract extensions manifests
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "start-data-collection" ]
   schedule: 
     - cron: "0 1 * * *"
 
@@ -72,6 +72,12 @@ jobs:
         echo "const manifests = " >> output/manifests.js
         cat output/manifests.json >> output/manifests.js
         echo ";const manifestsWithPermissions = manifests.filter(function(item){return !item.error}).filter(function(item){return item.manifest.permissions != undefined})" >> output/manifests.js
+    
+    - name: create manifest collection
+      run: |
+        mkdir archive
+        cp output/manifests.json "archive/$(date +%Y)_week_$(date +%U)_manifests.json"
+        zip output/manifest-history.zip -r archive
         
     - name: upload result
       uses: actions/upload-artifact@v3
