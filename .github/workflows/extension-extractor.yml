@@ -3,7 +3,7 @@ name: extract extensions manifests
 on:
   workflow_dispatch:
   push:
-    branches: [ "main", "start-data-collection" ]
+    branches: [ "main" ]
   schedule: 
     - cron: "0 1 * * *"
 
