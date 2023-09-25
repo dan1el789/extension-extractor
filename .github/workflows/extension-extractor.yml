@@ -49,7 +49,7 @@ jobs:
         
     - name: download Extensions
       run: |
-        sudo apt install unzip -y
+        sudo apt install zip unzip -y
         
         mkdir manifests
         mkdir download
@@ -76,6 +76,8 @@ jobs:
     - name: create manifest collection
       run: |
         mkdir archive
+        curl https://dan1el789.github.io/extension-extractor/manifest-history.zip -s -o "manifest-history.zip"
+        unzip -q -d archive "manifest-history.zip"
         cp output/manifests.json "archive/$(date +%Y)_week_$(date +%U)_manifests.json"
         zip output/manifest-history.zip -r archive
         
